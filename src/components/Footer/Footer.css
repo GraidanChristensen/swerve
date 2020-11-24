@@ -1,0 +1,17 @@
+.Footer{
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    border-top: black solid 1px;
+  }
+
+  .Footer h5{
+    position: absolute;
+    left: 10px;
+    text-decoration: none;
+    color: black;
+  }
+
