@@ -5,13 +5,14 @@
     bottom: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
     border-top: black solid 1px;
   }
 
-  .Footer h5{
-    position: absolute;
+  .Footer img{
+    width: 15px;
+    position: fixed;
     left: 10px;
-    text-decoration: none;
-    color: black;
+    bottom: 10px;
   }
 

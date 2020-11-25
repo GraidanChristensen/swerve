@@ -1,0 +1,19 @@
+.product-grid{
+    display: grid;
+    grid: auto / repeat(2, 1fr);
+    grid-gap: 40px 20px;
+}
+
+.grid-product {
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.grid-product img{
+    width:  100px;
+    height: 100px;
+    object-fit: cover;
+}

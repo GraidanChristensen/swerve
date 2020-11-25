@@ -22,4 +22,7 @@ massive({
 }).catch( err => console.log(err));
 
 
+//shopENDPOINTS
+app.get('/api/products', shopController.getProducts);
+
 app.listen(SERVER_PORT, ()=>console.log(`Listening on ${SERVER_PORT}`));
