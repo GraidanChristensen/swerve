@@ -23,11 +23,9 @@ class Header extends Component{
     return(
       <div className='Header'>
         <header className='header'>
-          <Link to='/'><img className='headerLogo' alt='logo' src={SWERVEWORD}/></Link>
-          <div className='bottomHeader'>
             <button onClick={this.toggleMenu} className='hamburgerButton'><img src={hamburger} alt='hamburger menu' className='hamburger'/></button>
+            <Link to='/'><img className='headerLogo' alt='logo' src={SWERVEWORD}/></Link>
             <Link onClick={this.state.toggleMenu === true ? this.toggleMenu : null} className='cartButton'to='/cart'>Cart</Link>
-          </div>
         </header>
         <nav className={`menu ${this.state.toggleMenu ? "showMenu" : ""}`}>
               <Link onClick={this.toggleMenu} className="menuLinks" to='/'>Home</Link>

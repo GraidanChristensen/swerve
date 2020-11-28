@@ -24,5 +24,6 @@ massive({
 
 //shopENDPOINTS
 app.get('/api/products', shopController.getProducts);
+app.get('/api/product/:id', shopController.getProduct);
 
 app.listen(SERVER_PORT, ()=>console.log(`Listening on ${SERVER_PORT}`));

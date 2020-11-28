@@ -6,12 +6,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: black solid 1px;
+    background-color: #f7f7f7;
   }
 
   .Footer img{
     width: 15px;
-    position: fixed;
+    position: absolute;
     left: 10px;
     bottom: 10px;
   }

@@ -1,6 +1,6 @@
 .product-grid{
     display: grid;
-    grid: auto / repeat(2, 1fr);
+    grid: auto / repeat(1, 1fr);
     grid-gap: 40px 20px;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .grid-product img{
-    width:  100px;
-    height: 100px;
+    width:  100%;
+    height: 100%;
     object-fit: cover;
 }

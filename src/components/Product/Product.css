@@ -1,0 +1,30 @@
+.Product{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.backButton{
+    position: absolute;
+    left: 20px;
+}
+
+.productImage{
+    width: 95%;
+}
+
+.imageSelectors{
+    display: flex;
+}
+
+.imageSelectors img{
+    width:100px;
+}
+
+.sizes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+}
+
