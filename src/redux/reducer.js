@@ -18,7 +18,7 @@ export const clearAdmin = () => {
     return{
         type: CLEAR_ADMIN,
         payload: {
-            id: ""
+            id: null
         }
     }
 }
@@ -26,6 +26,10 @@ export const clearAdmin = () => {
 export default function reducer(state = initialState, action){
     switch(action.type){
         case GET_ADMIN:
+            return{
+                id: action.payload.id
+            }
+        case CLEAR_ADMIN:
             return{
                 id: action.payload.id
             }

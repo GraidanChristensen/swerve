@@ -30,7 +30,6 @@ class Admin extends Component{
     const {username, password} = this.state;
     try{
       const user = await axios.post('/admin/login', {username, password});
-      console.log(user.data)
       this.props.getAdmin(user.data.admin_id);
       this.props.history.push('/');
     }

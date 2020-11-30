@@ -15,8 +15,8 @@ export default(
         <Route path='/product/:productid' component={Product}/>
         <Route path='/cart' component={Cart}/>
         <Route path='/admin' component={Admin}/>
-        <Route path='/admin/products' component={Products}/>
-        <Route path='/admin/orders' component={Orders}/>
+        <Route path='/products' component={Products}/>
+        <Route path='/orders' component={Orders}/>
         <Route path='/team' component={Team}/>
     </Switch>
 )

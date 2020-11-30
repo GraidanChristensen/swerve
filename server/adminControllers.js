@@ -20,6 +20,11 @@ module.exports = {
             return res.status(401).send("Incorrect login info");
         }
 
+    },
+
+    logout: async (req, res) => {
+        req.session.destroy();
+        res.sendStatus(200);
     }
 
 }
