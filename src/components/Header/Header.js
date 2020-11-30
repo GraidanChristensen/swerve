@@ -3,6 +3,7 @@ import './Header.css';
 import SWERVEWORD from '../../media/SWERVE WORD.png';
 import hamburger from '../../media/hamburger.png';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 class Header extends Component{
   constructor(){
@@ -37,4 +38,10 @@ class Header extends Component{
   }
 }
 
-export default Header;
+function mapStateToProps(state){
+  return{
+    id: state.id
+  }
+}
+
+export default connect(mapStateToProps)(Header);

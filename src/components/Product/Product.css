@@ -4,11 +4,6 @@
     align-items: center;
 }
 
-.backButton{
-    position: absolute;
-    left: 20px;
-}
-
 .productImage{
     width: 95%;
 }

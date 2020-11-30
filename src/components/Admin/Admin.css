@@ -1,0 +1,28 @@
+.Admin{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.loginBox{
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Admin button{
+    margin-top: 20px;
+    width: 60px;
+    height: 40px;
+    border: none;
+    background-color: #969696;
+    color: white;
+}
+
+.loginBox input{
+    height: 30px;
+    width: 250px;
+}

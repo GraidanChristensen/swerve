@@ -8,6 +8,7 @@ class Footer extends Component{
       <div className='Footer'>
         <Link to='/admin'><img alt='lock' src={lock}/></Link>
         <p>contact information goes here </p>
+        <p>Socials</p>
       </div>
     )
   }

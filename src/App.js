@@ -8,8 +8,10 @@ class App extends Component{
     return(
       <div className='App'>
         <Header/>
-        <Footer/>
         {routes}
+        <footer>
+          <Footer/>
+        </footer>
       </div>
     )
   }

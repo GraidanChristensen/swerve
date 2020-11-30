@@ -1,18 +1,15 @@
 .Footer{
     width: 100%;
-    position: fixed;
+    /* position: fixed;
     left: 0;
-    bottom: 0;
+    bottom: 0; */
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     background-color: #f7f7f7;
   }
 
   .Footer img{
     width: 15px;
-    position: absolute;
-    left: 10px;
-    bottom: 10px;
   }
 

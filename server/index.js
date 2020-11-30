@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const massive = require('massive');
+const session = require('express-session');
 
 const {SESSION_SECRET, SERVER_PORT, CONNECTION_STRING} = process.env;
 const adminController = require('./adminControllers');
@@ -10,6 +11,12 @@ const shopController = require('./shopControllers');
 const app = express();
 
 app.use(express.json());
+
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: SESSION_SECRET
+}))
 
 massive({
     connectionString: CONNECTION_STRING,
@@ -25,5 +32,8 @@ massive({
 //shopENDPOINTS
 app.get('/api/products', shopController.getProducts);
 app.get('/api/product/:id', shopController.getProduct);
+
+//adminENDPOINTS
+app.post('/admin/login', adminController.login);
 
 app.listen(SERVER_PORT, ()=>console.log(`Listening on ${SERVER_PORT}`));

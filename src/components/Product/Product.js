@@ -24,9 +24,6 @@ class Product extends Component{
 
   componentDidMount(){
     this.getProduct();
-    this.setState({
-      displayImage: this.state.image
-    })
   }
 
   getProduct = async () => {
@@ -42,7 +39,8 @@ class Product extends Component{
         medium: product.data[0].amount_medium,
         large: product.data[0].amount_large,
         xlarge: product.data[0].amount_xlarge,
-        xxlarge: product.data[0].amount_xxlarge
+        xxlarge: product.data[0].amount_xxlarge,
+        displayImage: product.data[0].image
       })
     }
     catch(err){
@@ -68,8 +66,6 @@ class Product extends Component{
             <button>XL</button>
           </div>
           <h5>{this.state.description}</h5>
-
-          {console.log(this.state)}
       </div>
     )
   }
