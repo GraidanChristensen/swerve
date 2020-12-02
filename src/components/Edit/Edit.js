@@ -27,10 +27,21 @@ getProduct = async () => {
     }
 }
 
+deleteProduct = async () => {
+    try{
+        const deleted = await axios.delete(`/admin/deleteProduct/${this.state.product.product_id}`)
+        this.props.history.push('/products');
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
   render(){
     return(
       <div className='Edit'>
           <h1>Edit</h1>
+          <button onClick={this.deleteProduct}>Delete</button>
           {console.log(this.state.product)}
       </div>
     )
