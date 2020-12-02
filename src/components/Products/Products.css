@@ -1,0 +1,61 @@
+.adminProductGrid{
+    display: grid;
+    grid: auto / repeat(1, 1fr);
+    grid-gap: 10px;
+    margin: 20px;
+}
+
+.adminProduct{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    border-top: #969696 solid 1px;
+}
+
+.adminProduct img{
+    margin-top: 10px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.editButton{
+    border: none;
+    color: white;
+    background-color: #969696;
+    width: 50px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.addProduct{
+    margin-top: 10px;
+    width: 150px;
+    height: 25px;
+    color: white;
+    border: none;
+    background-color: #969696;
+}
+
+.inputAdd{
+    display: none;
+}
+
+.showInputAdd{
+    display: inline;
+}
+
+.addButton{
+    display: none;
+}
+
+.showAddButton{
+    display: inline;
+    border: none;
+    color: white;
+    background-color: #969696;
+    width: 60px;
+    height: 30px;
+    margin-bottom: 10px;
+}

@@ -25,6 +25,22 @@ module.exports = {
     logout: async (req, res) => {
         req.session.destroy();
         res.sendStatus(200);
+    },
+
+    addPost: async (req, res) => {
+        const db = req.app.get('db');
+        const {title, description, image, back_image, price, small, medium, large, xlarge, xxlarge} = req.body;
+        const newProduct = await db.add_product([title, description, image, back_image, price, small, medium, large, xlarge, xxlarge]);
+        return res.sendStatus(200);
+    },
+
+    deleteProduct: async (req, res) => {
+        const db = req.app.get('db');
+        const{id} = req.params;
+
+        await db.delete_product([id]);
+        return res.status(200).send("Deleted");
+
     }
 
 }

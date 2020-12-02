@@ -31,6 +31,7 @@ class Header extends Component{
     try{
       await Axios.post('/admin/logout');
       this.props.clearAdmin();
+      this.toggleMenu();
     }
     catch(err){
       alert(err);

@@ -36,5 +36,6 @@ app.get('/api/product/:id', shopController.getProduct);
 //adminENDPOINTS
 app.post('/admin/login', adminController.login);
 app.post('/admin/logout', adminController.logout);
-
+app.post('/admin/addPost', adminController.addPost);
+app.delete('/admin/deleteProduct/:id', adminController.deleteProduct);
 app.listen(SERVER_PORT, ()=>console.log(`Listening on ${SERVER_PORT}`));

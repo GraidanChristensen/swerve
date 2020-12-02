@@ -8,6 +8,7 @@ import Admin from './components/Admin/Admin';
 import Products from './components/Products/Products';
 import Orders from './components/Orders/Orders';
 import Team from './components/Team/Team';
+import Edit from './components/Edit/Edit';
 export default(
     <Switch>
         <Route exact path='/' component={Home}/>
@@ -18,5 +19,6 @@ export default(
         <Route path='/products' component={Products}/>
         <Route path='/orders' component={Orders}/>
         <Route path='/team' component={Team}/>
+        <Route path='/edit/:productid' component={Edit}/>
     </Switch>
 )
