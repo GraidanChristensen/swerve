@@ -7,7 +7,17 @@ class Edit extends Component{
         super();
 
         this.state = {
-            product: null
+            product: {},
+            titleInput: '',
+            descriptionInput: '',
+            imageInput: '',
+            back_imageInput: '',
+            priceInput: 0,
+            smallInput: 0,
+            mediumInput: 0,
+            largeInput: 0,
+            xlargeInput: 0,
+            xxlargeInput: 0
         }
     }
 
@@ -15,11 +25,24 @@ componentDidMount(){
     this.getProduct();
 }
 
+
+//uses id passes on url to get product from database
 getProduct = async () => {
     try{
         const product = await axios.get(`/api/product/${this.props.match.params.productid}`)
         this.setState({
-            product: product.data[0]
+            product: product.data[0],
+            titleInput: product.data[0].title,
+            descriptionInput: product.data[0].description,
+            imageInput: product.data[0].image,
+            back_imageInput: product.data[0].back_image,
+            priceInput: product.data[0].price,
+            smallInput: product.data[0].amount_small,
+            mediumInput: product.data[0].amount_medium,
+            largeInput: product.data[0].amount_large,
+            xlargeInput: product.data[0].amount_xlarge,
+            xxlargeInput: product.data[0].amount_xxlarge 
+            
         })
     }
     catch(err){
@@ -27,9 +50,10 @@ getProduct = async () => {
     }
 }
 
+//comopletely deletes a product from db
 deleteProduct = async () => {
     try{
-        const deleted = await axios.delete(`/admin/deleteProduct/${this.state.product.product_id}`)
+        await axios.delete(`/admin/deleteProduct/${this.state.product.product_id}`)
         this.props.history.push('/products');
     }
     catch(err){
@@ -37,12 +61,82 @@ deleteProduct = async () => {
     }
 }
 
+  //handles input changes
+  changeHandler = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    // gets called on click of cancel button
+    // resets state and goes back to products page
+    cancelEdit = () => {
+        this.props.history.push('/products');
+    }
+
+    editProduct = async () => {
+        const {
+            titleInput,
+            descriptionInput,
+            imageInput,
+            back_imageInput,
+            priceInput,
+            smallInput,
+            mediumInput,
+            largeInput,
+            xlargeInput,
+            xxlargeInput} = this.state;
+        try{
+            await axios.put(`/admin/editProduct/${this.props.match.params.productid}`, {
+                titleInput,
+                descriptionInput,
+                imageInput,
+                back_imageInput,
+                priceInput,
+                smallInput,
+                mediumInput,
+                largeInput,
+                xlargeInput,
+                xxlargeInput})
+                
+            this.props.history.push('/products');
+        }
+        catch (err){
+            console.log(err)
+        }
+    }
+
   render(){
     return(
       <div className='Edit'>
-          <h1>Edit</h1>
+          <h3>Edit Product</h3>
+          <h5>Title: {this.state.product.title}</h5>
+          <input onChange={ e => this.changeHandler(e)} name="titleInput"/>
+          <h5>Description: {this.state.product.description}</h5>
+          <input onChange={ e => this.changeHandler(e)} name="descriptionInput"/>
+          <div className="editImages">
+            <img alt="product" src={this.state.product.image} />
+            <img alt="product" src={this.state.product.back_image} />
+          </div>
+          <input onChange={ e => this.changeHandler(e)} name="imageInput" placeholder="image one"/>
+          <input onChange={ e => this.changeHandler(e)} name="back_imageInput" placeholder="image two"/>
+          <h5>Price: {this.state.product.price}</h5>
+          <input onChange={ e => this.changeHandler(e)} name="priceInput"/>
+          <h5>Small: {this.state.product.amount_small}</h5>
+          <input onChange={ e => this.changeHandler(e)} name="smallInput"/>
+          <h5>Medium: {this.state.product.amount_medium}</h5>
+          <input onChange={ e => this.changeHandler(e)} name="mediumInput"/>
+          <h5>Large: {this.state.product.amount_large}</h5>
+          <input onChange={ e => this.changeHandler(e)} name="largeInput"/>
+          <h5>Xlarge: {this.state.product.amount_xlarge}</h5>
+          <input onChange={ e => this.changeHandler(e)} name="xlargeInput"/>
+          <h5>XXlarge: {this.state.product.amount_xxlarge}</h5>
+          <input onChange={ e => this.changeHandler(e)} name="xxlargeInput"/>
+          <div className="editButtons">
           <button onClick={this.deleteProduct}>Delete</button>
-          {console.log(this.state.product)}
+          <button onClick={this.editProduct}>Save</button>
+          <button onClick={this.cancelEdit}>Cancel</button>
+          </div>
       </div>
     )
   }

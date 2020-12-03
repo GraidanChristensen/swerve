@@ -41,6 +41,17 @@ module.exports = {
         await db.delete_product([id]);
         return res.status(200).send("Deleted");
 
+    },
+
+    editProduct: async (req, res) => {
+        const db = req.app.get('db');
+        const{id} = req.params;
+
+        //desctructure object coming from body. comes from the state on the edit page front end
+        const {titleInput, descriptionInput, imageInput, back_imageInput, priceInput, smallInput, mediumInput, largeInput, xlargeInput, xxlargeInput} = req.body;
+        
+        const editedProduct = await db.edit_product([id, titleInput, descriptionInput, imageInput, back_imageInput, priceInput, smallInput, mediumInput, largeInput, xlargeInput, xxlargeInput])
+        return res.status(200).send(editedProduct);
     }
 
 }

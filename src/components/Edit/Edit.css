@@ -1,0 +1,17 @@
+.Edit{
+    margin-left: 20px;
+}
+
+.Edit button{
+    border: none;
+    color: white;
+    background-color: #969696;
+    width: 50px;
+    height: 30px;
+    margin: 10px;
+    margin-left: 0px;
+}
+
+.Edit img{
+    width: 100px;
+}
