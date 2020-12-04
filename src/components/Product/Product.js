@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {getCart} from '../../redux/reducer';
+
 import './Product.css';
 
 class Product extends Component{
@@ -40,13 +43,29 @@ class Product extends Component{
         large: product.data[0].amount_large,
         xlarge: product.data[0].amount_xlarge,
         xxlarge: product.data[0].amount_xxlarge,
-        displayImage: product.data[0].image
+        displayImage: product.data[0].image,
+        selectedSize: 'small'
       })
     }
     catch(err){
       console.log(err);
     }
   }
+
+  //sets state value for slected size to be whatever user
+  //selects on drop down menu
+  handleSize = (e) => {
+    this.setState({
+      selectedSize: e.target.options[e.target.selectedIndex].value
+    })
+  }
+
+  // handles the add to cart button
+  //axios call to add product to cart
+  addToCart = () => {
+    
+  }
+
 
   render(){
     return(
@@ -59,16 +78,26 @@ class Product extends Component{
             <img alt='product' src={this.state.backImage}/>
           </div>
           <h5>{this.state.price}</h5>
-          <div className = "sizes">
-            <button>S</button>
-            <button>M</button>
-            <button>L</button>
-            <button>XL</button>
-          </div>
+
+          <select onClick={e => this.handleSize(e)} name="sizes" id="sizes">
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+            <option value="xlarge">X Large</option>
+            <option value="xxlarge">XX Large</option>
+          </select>
+          <button>Add to Cart</button>
           <h5>{this.state.description}</h5>
+          {console.log(this.props.cart_id)}
       </div>
     )
   }
 }
 
-export default Product;
+function mapStateToProps(state){
+  return{
+    cart_id: state.cart_id
+  }
+}
+
+export default connect(mapStateToProps, {getCart})(Product);

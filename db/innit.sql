@@ -5,3 +5,9 @@
 
 --INSERT INTO products (title, description, image, price, amount_small)
 -- VALUES('Black Beanie', 'High quality beanie', 'https://images-na.ssl-images-amazon.com/images/I/61Pr5UVOkwL._AC_UX466_.jpg', 20.00, 20);
+
+
+
+-- CREATE TABLE cart (cart_id SERIAL PRIMARY KEY, total_price DECIMAL(10,2), total_quantity INT);
+
+--CREATE TABLE cart_reference(product_id INT REFERENCES products(product_id), cart_id INT REFERENCES cart(cart_id), size VARCHAR(20));

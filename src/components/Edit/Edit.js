@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import './Edit.css';
 class Edit extends Component{
@@ -21,8 +22,15 @@ class Edit extends Component{
         }
     }
 
+//if admin is not logged in sends back to home page
+//if admin is logged in get product
 componentDidMount(){
-    this.getProduct();
+    if(this.props.id){
+        this.getProduct();
+    }
+    else{
+          this.props.history.push('/');
+    }
 }
 
 
@@ -142,4 +150,10 @@ deleteProduct = async () => {
   }
 }
 
-export default Edit;
+function mapStateToProps(state){
+    return{
+      id: state.id
+    }
+  }
+  
+  export default connect(mapStateToProps)(Edit);
