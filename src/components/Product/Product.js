@@ -25,8 +25,10 @@ class Product extends Component{
     }
   }
 
+
   componentDidMount(){
     this.getProduct();
+    this.getMyCart();
   }
 
   getProduct = async () => {
@@ -52,6 +54,20 @@ class Product extends Component{
     }
   }
 
+
+  //gets cart_id off sesion and sets it to redux state
+  getMyCart = async () => {
+    try{
+      const id = await axios.get('/api/getmycart');
+      this.props.getCart(id.data.cart_id);
+      console.log(id.data.cart_id);
+
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+
   //sets state value for slected size to be whatever user
   //selects on drop down menu
   handleSize = (e) => {
@@ -62,8 +78,15 @@ class Product extends Component{
 
   // handles the add to cart button
   //axios call to add product to cart
-  addToCart = () => {
-    
+  addToCart = async () => {
+    // get size off state
+    const cartParams = {size: this.state.selectedSize, cart_id: this.props.cart_id}
+    // // axios call sending product id off url params
+    const cart = await axios.post(`/api/addtocart/${this.props.match.params.productid}`, cartParams);
+    // set cart_id onto redux
+    console.log(cart.data[0].total_price);
+    // this.props.getCart(cart.data[0].cart_id);
+
   }
 
 
@@ -86,9 +109,8 @@ class Product extends Component{
             <option value="xlarge">X Large</option>
             <option value="xxlarge">XX Large</option>
           </select>
-          <button>Add to Cart</button>
+          <button onClick={this.addToCart}>Add to Cart</button>
           <h5>{this.state.description}</h5>
-          {console.log(this.props.cart_id)}
       </div>
     )
   }

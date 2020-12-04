@@ -32,7 +32,9 @@ massive({
 //shopENDPOINTS
 app.get('/api/products', shopController.getProducts);
 app.get('/api/product/:id', shopController.getProduct);
+app.get('/api/getmycart', shopController.getMyCart);
 app.post('/api/addtocart/:product_id', shopController.addToCart);
+
 
 //adminENDPOINTS
 app.post('/admin/login', adminController.login);

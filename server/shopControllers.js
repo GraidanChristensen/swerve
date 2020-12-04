@@ -26,18 +26,7 @@ module.exports = {
     addToCart: async (req, res) => {
         const db = req.app.get('db');
         const {product_id}=req.params;
-        const {size}= req.body
-
-        //if there is no cart on session make new cart on table
-        // and set cart_id on session
-        if(!req.sesion){
-            const cart = await db.create_cart();
-
-            req.session.cart = {
-                cart_id: cart[0].cart_id
-            }
-        }
-
+        const {size, cart_id}= req.body
 
         // add to to cart_reference table with product id and cart id from session
         const cartref = await db.add_to_cart([product_id, req.session.cart.cart_id, size]);
@@ -53,6 +42,22 @@ module.exports = {
         const updatedCart = await db.update_cart([req.session.cart.cart_id, totalPrice.sum, totalQuantity.count]);
         
         //return updatedcart
-        return res.status(200).send(updatedCart)
+        return res.status(200).send(updatedCart);
+    },
+
+    getMyCart: async (req, res) => {
+        const db = req.app.get('db');
+
+        console.log("hit");
+        if(!req.session.cart){
+            const cart = await db.create_cart();
+
+            req.session.cart = {
+                cart_id: cart[0].cart_id
+            }        
+        }
+
+        return res.status(200).send(req.session.cart);
+
     }
 }

@@ -30,7 +30,7 @@ export const clearAdmin = () => {
 export const getCart = (cart_id)=>{
     return{
         type: GET_CART,
-        payload: cart_id
+        payload: {cart_id}
     }
 }
 
