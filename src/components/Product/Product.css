@@ -1,4 +1,4 @@
-.Product{
+.productContent{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,3 +23,64 @@
     width: 50%;
 }
 
+.cartDropDown{
+    width: 200px;
+    height: 200px;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    /* position: -webkit-sticky; */
+    position: absolute;
+    top: 100px;
+    right: 1px;
+    border: 2px solid white;
+}
+
+.cartDropDown img{
+    width: 80px;
+    margin-right: 5px;
+}
+
+.productButton{
+    text-decoration: none;
+    color: black;
+}
+
+.cartDropContent{
+    display: flex;
+    align-items: center;
+    height: 80px;
+    padding-bottom: 20px;
+}
+
+.hideDropDown{
+    display: none;
+}
+
+.cartDropDown {
+    -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Opera */
+    animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+@keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+}
+@-webkit-keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        visibility:hidden;
+    }
+}

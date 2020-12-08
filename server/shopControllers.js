@@ -29,8 +29,9 @@ module.exports = {
         const {size, cart_id}= req.body
 
         // add to to cart_reference table with product id and cart id from session
+        console.log(size);
         const cartref = await db.add_to_cart([product_id, req.session.cart.cart_id, size]);
-
+        console.log(cartref);
         //update price and quantity on cart table
         //get sum of all products in cart
         const [totalPrice] = await db.sum_of_cart([req.session.cart.cart_id]);
@@ -48,7 +49,6 @@ module.exports = {
     getMyCart: async (req, res) => {
         const db = req.app.get('db');
 
-        console.log("hit");
         if(!req.session.cart){
             const cart = await db.create_cart();
 
@@ -59,5 +59,30 @@ module.exports = {
 
         return res.status(200).send(req.session.cart);
 
+    },
+
+    getQuantity: async (req, res) => {
+        const db = req.app.get('db');
+        const {cart_id} = req.params;
+
+        const quantity = await db.quantity_of_cart([cart_id]);
+
+        return res.status(200).send(quantity[0].count);
+    },
+
+    getCart: async (req, res) => {
+        const db = req.app.get('db');
+        const {cart_id} = req.params;
+        
+        const cart = await db.get_cart_items([cart_id]);
+        return res.status(200).send(cart);
+    },
+
+    getSum: async (req, res) => {
+        const db = req.app.get('db');
+        const {cart_id} = req.params;
+
+        const total = await db.sum_of_cart([cart_id]);
+        return res.status(200).send(total);
     }
 }

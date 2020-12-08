@@ -6,10 +6,12 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #f7f7f7;
+    background-color: #232323;
+    color: white;
   }
 
   .Footer img{
     width: 15px;
+    color: white;
   }
 

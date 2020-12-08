@@ -34,6 +34,9 @@ app.get('/api/products', shopController.getProducts);
 app.get('/api/product/:id', shopController.getProduct);
 app.get('/api/getmycart', shopController.getMyCart);
 app.post('/api/addtocart/:product_id', shopController.addToCart);
+app.get('/api/getquantity/:cart_id', shopController.getQuantity);
+app.get('/api/cart/:cart_id', shopController.getCart);
+app.get('/api/carttotal/:cart_id', shopController.getSum);
 
 
 //adminENDPOINTS

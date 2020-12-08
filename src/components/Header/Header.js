@@ -5,7 +5,7 @@ import hamburger from '../../media/hamburger.png';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {clearAdmin} from '../../redux/reducer';
-import Axios from 'axios';
+import axios from 'axios';
 
 //This component constantly displays on top of screen.
 //nav is a menu to other pages. checks for admin logged in
@@ -17,24 +17,51 @@ class Header extends Component{
     super();
 
     this.state = {
-      toggleMenu: false
+      toggleMenu: false,
+      cartQuantity: null
     }
   }
 
+  componentDidMount(){
+    if(this.props.cart_id){
+      this.getQuantity();
+    }
+  }
+
+  componentDidUpdate(){
+    if(this.props.cart_id){
+      this.getQuantity();
+    }
+  }
+
+  //toggles drop down menu
   toggleMenu = () => {
     this.setState({
       toggleMenu: !this.state.toggleMenu
     })
   }
 
+  //handles logout. clears redux adminid and destroys session on backend
   logout = async () => {
     try{
-      await Axios.post('/admin/logout');
+      await axios.post('/admin/logout');
       this.props.clearAdmin();
       this.toggleMenu();
     }
     catch(err){
       alert(err);
+    }
+  }
+
+  getQuantity = async () => {
+    try{
+      const quantity = await axios.get(`/api/getquantity/${this.props.cart_id}`);
+      this.setState({
+        cartQuantity: quantity.data
+      })
+    }
+    catch(err){
+      console.log(err);
     }
   }
 
@@ -44,7 +71,10 @@ class Header extends Component{
         <header className='header'>
             <button onClick={this.toggleMenu} className='hamburgerButton'><img src={hamburger} alt='hamburger menu' className='hamburger'/></button>
             <Link to='/'><img className='headerLogo' alt='logo' src={SWERVEWORD}/></Link>
-            <Link onClick={this.state.toggleMenu === true ? this.toggleMenu : null} className='cartButton'to='/cart'>Cart</Link>
+            <div className="cartHeader">
+              <Link onClick={this.state.toggleMenu === true ? this.toggleMenu : null} className='cartButton'to='/cart'>Cart</Link>
+              {this.state.cartQuantity ? <Link className='cartButton' to='/cart'>({this.state.cartQuantity})</Link> : null}
+            </div>
         </header>
         <nav className={`menu ${this.state.toggleMenu ? "showMenu" : ""}`}>
               <Link onClick={this.toggleMenu} className="menuLinks" to='/'>Home</Link>
@@ -70,7 +100,9 @@ class Header extends Component{
 
 function mapStateToProps(state){
   return{
-    id: state.id
+    id: state.id,
+    cart_id: state.cart_id
+
   }
 }
 
