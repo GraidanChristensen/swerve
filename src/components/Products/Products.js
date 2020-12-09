@@ -24,7 +24,8 @@ class Products extends Component{
       medium: 0,
       large: 0,
       xlarge: 0,
-      xxlarge: 0
+      xxlarge: 0,
+      oneSize: 0
     }
   }
 
@@ -72,7 +73,8 @@ class Products extends Component{
       medium: 0,
       large: 0,
       xlarge: 0,
-      xxlarge: 0
+      xxlarge: 0,
+      oneSize: 0
     });
 
     this.toggleAdd();
@@ -86,8 +88,8 @@ class Products extends Component{
 }
 
   addProduct = async () => {
-    const {title, description, image, back_image, price, small, medium, large, xlarge, xxlarge} = this.state;
-    await axios.post('/admin/addPost', {title, description, image, back_image, price, small, medium, large, xlarge, xxlarge} );
+    const {title, description, image, back_image, price, small, medium, large, xlarge, xxlarge, oneSize} = this.state;
+    await axios.post('/admin/addPost', {title, description, image, back_image, price, small, medium, large, xlarge, xxlarge, oneSize} );
     this.cancelAdd(); // resets state values and toggles 
     this.getProducts(); // get new products
   }
@@ -108,6 +110,7 @@ class Products extends Component{
             <p>L: {product.amount_large}</p>
             <p>XL: {product.amount_xlarge}</p>
             <p>XXL: {product.amount_xxlarge}</p>
+            <p>One Size: {product.amount_onesize}</p>
             <Link to={`/edit/${product.product_id}`}><button className="editButton">Edit</button></Link>
         </div>
       )
@@ -127,6 +130,7 @@ class Products extends Component{
           <input name="large" value={this.state.large} onChange={ e => this.changeHandler(e)} className={!this.state.toggleAdd ? "inputAdd": "showInputAdd"} placeholder="large"/>
           <input name="xlarge" value={this.state.xlarge} onChange={ e => this.changeHandler(e)} className={!this.state.toggleAdd ? "inputAdd": "showInputAdd"} placeholder="xlarge"/>
           <input name="xxlarge" value={this.state.xxlarge} onChange={ e => this.changeHandler(e)} className={!this.state.toggleAdd ? "inputAdd": "showInputAdd"} placeholder="xxlarge"/>
+          <input name="oneSize" value={this.state.oneSize} onChange={e => this.changeHandler(e)} className={!this.state.toggleAdd ? "inputAdd": "showInputAdd"} placeholder="onesize"/>
           <button onClick={this.addProduct} className={!this.state.toggleAdd ? "addButton": "showAddButton"}>Add</button>
           <button onClick={this.cancelAdd} className={!this.state.toggleAdd ? "addButton": "showAddButton"}>Cancel</button>
           {mappedProducts}

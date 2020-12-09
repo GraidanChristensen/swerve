@@ -3,9 +3,9 @@ import axios from 'axios';
 import './Cart.css';
 import {connect} from 'react-redux';
 import {getCart} from '../../redux/reducer';
+import {Link} from 'react-router-dom';
 
 //tomorrow fix sizes
-//get cart button links working
 //style product button and drop down
 //create check out page
 
@@ -90,8 +90,8 @@ class Cart extends Component{
             <h3>Subtotal:</h3>
             <h3>{this.state.total} USD</h3>
           </div>
-          <button className="checkoutButton">CHECKOUT</button>
-          <button className="continueShopping">CONTINUE SHOPPING</button>
+          <Link to="/checkout"><button className="checkoutButton">CHECKOUT</button></Link> 
+          <Link to="/shop"><button className="continueShopping">CONTINUE SHOPPING</button></Link>
       </div>
     )
   }

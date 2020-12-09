@@ -18,7 +18,8 @@ class Edit extends Component{
             mediumInput: 0,
             largeInput: 0,
             xlargeInput: 0,
-            xxlargeInput: 0
+            xxlargeInput: 0,
+            onesizeInput: 0
         }
     }
 
@@ -49,8 +50,8 @@ getProduct = async () => {
             mediumInput: product.data[0].amount_medium,
             largeInput: product.data[0].amount_large,
             xlargeInput: product.data[0].amount_xlarge,
-            xxlargeInput: product.data[0].amount_xxlarge 
-            
+            xxlargeInput: product.data[0].amount_xxlarge,
+            onesizeInput: product.data[0].amount_onesize
         })
     }
     catch(err){
@@ -93,7 +94,8 @@ deleteProduct = async () => {
             mediumInput,
             largeInput,
             xlargeInput,
-            xxlargeInput} = this.state;
+            xxlargeInput,
+            onesizeInput} = this.state;
         try{
             await axios.put(`/admin/editProduct/${this.props.match.params.productid}`, {
                 titleInput,
@@ -105,7 +107,8 @@ deleteProduct = async () => {
                 mediumInput,
                 largeInput,
                 xlargeInput,
-                xxlargeInput})
+                xxlargeInput,
+                onesizeInput})
                 
             this.props.history.push('/products');
         }
@@ -140,6 +143,8 @@ deleteProduct = async () => {
           <input onChange={ e => this.changeHandler(e)} name="xlargeInput"/>
           <h5>XXlarge: {this.state.product.amount_xxlarge}</h5>
           <input onChange={ e => this.changeHandler(e)} name="xxlargeInput"/>
+          <h5>OneSize: {this.state.product.amount_onesize}</h5>
+          <input onChange={ e => this.changeHandler(e)} name="onesizeInput"/>
           <div className="editButtons">
           <button onClick={this.deleteProduct}>Delete</button>
           <button onClick={this.editProduct}>Save</button>

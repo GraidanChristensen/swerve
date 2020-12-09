@@ -1,5 +1,5 @@
 .Cart{
-    height: 100vh;
+    height: 100%;
 }
 
 .Cart h1{
@@ -67,4 +67,5 @@
     height: 50px;
     width: 40%;
     margin-left: 30%;
+    margin-bottom: 25px;
 }

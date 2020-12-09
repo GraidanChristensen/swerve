@@ -29,8 +29,8 @@ module.exports = {
 
     addPost: async (req, res) => {
         const db = req.app.get('db');
-        const {title, description, image, back_image, price, small, medium, large, xlarge, xxlarge} = req.body;
-        const newProduct = await db.add_product([title, description, image, back_image, price, small, medium, large, xlarge, xxlarge]);
+        const {title, description, image, back_image, price, small, medium, large, xlarge, xxlarge, oneSize} = req.body;
+        const newProduct = await db.add_product([title, description, image, back_image, price, small, medium, large, xlarge, xxlarge, oneSize]);
         return res.sendStatus(200);
     },
 
@@ -48,9 +48,9 @@ module.exports = {
         const{id} = req.params;
 
         //desctructure object coming from body. comes from the state on the edit page front end
-        const {titleInput, descriptionInput, imageInput, back_imageInput, priceInput, smallInput, mediumInput, largeInput, xlargeInput, xxlargeInput} = req.body;
-        
-        const editedProduct = await db.edit_product([id, titleInput, descriptionInput, imageInput, back_imageInput, priceInput, smallInput, mediumInput, largeInput, xlargeInput, xxlargeInput])
+        const {titleInput, descriptionInput, imageInput, back_imageInput, priceInput, smallInput, mediumInput, largeInput, xlargeInput, xxlargeInput, onesizeInput} = req.body;
+        console.log(onesizeInput);
+        const editedProduct = await db.edit_product([id, titleInput, descriptionInput, imageInput, back_imageInput, priceInput, smallInput, mediumInput, largeInput, xlargeInput, xxlargeInput, onesizeInput])
         return res.status(200).send(editedProduct);
     }
 
