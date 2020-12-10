@@ -73,9 +73,13 @@ module.exports = {
     getCart: async (req, res) => {
         const db = req.app.get('db');
         const {cart_id} = req.params;
-        
-        const cart = await db.get_cart_items([cart_id]);
-        return res.status(200).send(cart);
+        try{
+            const cart = await db.get_cart_items([cart_id]);
+            return res.status(200).send(cart);
+        }
+        catch(err){
+            console.log(err)
+        }
     },
 
     getSum: async (req, res) => {
@@ -84,5 +88,25 @@ module.exports = {
 
         const total = await db.sum_of_cart([cart_id]);
         return res.status(200).send(total);
+    },
+
+    deleteItem: async (req, res) => {
+        const db = req.app.get('db');
+        const{cartref} = req.params;
+
+        await db.delete_item([cartref]);
+        return res.status(200);
+    },
+
+    addCustomer: async (req, res) => {
+        const db = req.app.get('db');
+        const{cartid} = req.params;
+        console.log(cartid);
+        const{email, firstName, lastName, address, apartment, city, country, state, postalCode, phone} = req.body;
+
+        const customer = await db.add_customer([email, firstName, lastName, address, apartment, city, country, state, postalCode, phone, cartid]);
+        await db.set_cart_customer_id([customer[0].customer_id,cartid])
+        return res.status(200).send(customer);
     }
+    
 }

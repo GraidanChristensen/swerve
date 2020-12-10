@@ -1,0 +1,63 @@
+.Checkout{
+    display: flex;
+    flex-direction: column;
+}
+
+.backToCart{
+    margin: 15px;
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+h3{
+    margin-left: 15px;
+}
+
+.form-control{
+    width: 75%;
+    height: 35px;
+}
+
+.formGroup{
+    margin-left: 15px;
+}
+
+#country{
+    width: 75%;
+    height: 40px;
+}
+
+input{
+    margin-bottom: 10px;
+}
+
+h5{
+    margin-bottom: 5px;
+}
+
+.returnToCart{
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 10px;
+}
+
+
+h4{
+    margin-left: 15px;
+    color: red;
+}
+
+.submitButton{
+    color: white;
+    background-color: #303030;
+    border: none;
+    border-radius: 5px;   
+    width: 90%;
+    height: 50px;
+    margin-left: 5%;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}

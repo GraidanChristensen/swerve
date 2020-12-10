@@ -14,3 +14,8 @@
 -- CREATE TABLE cart (cart_id SERIAL PRIMARY KEY, total_price DECIMAL(10,2), total_quantity INT);
 
 --CREATE TABLE cart_reference(product_id INT REFERENCES products(product_id), cart_id INT REFERENCES cart(cart_id), size VARCHAR(20));
+
+-- CREATE TABLE customers(customer_id SERIAL PRIMARY KEY, email VARCHAR(50), first_name VARCHAR(50), last_name VARCHAR(50), address VARCHAR(30), apartment VARCHAR(25), city VARCHAR(30), country VARCHAR(50), state VARCHAR(25), postal_code INT, phone VARCHAR(15));
+
+-- ALTER TABLE customers
+-- ADD cart_id INT REFERENCES cart(cart_id);

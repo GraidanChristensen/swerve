@@ -35,6 +35,7 @@ class Product extends Component{
     this.getMyCart();
   }
 
+  //gets the product using product id
   getProduct = async () => {
     try{
       const product = await axios.get(`/api/product/${this.props.match.params.productid}`)
@@ -116,6 +117,19 @@ class Product extends Component{
 
   }
 
+  //changes display image 
+  handleImage1 = () => {
+    this.setState({
+      displayImage: this.state.image
+    })
+  }
+
+  //changes display image
+  handleImage2 = () => {
+    this.setState({
+      displayImage: this.state.backImage
+    })
+  }
 
   render(){
     return(
@@ -136,10 +150,10 @@ class Product extends Component{
           <div className = "productContent">
             <Link className="productButton" to='/shop'><h5>Back</h5></Link>
             <h1>{this.state.title}</h1>
-            <img alt='product' className='productImage' src={this.state.image}/>
+            <img alt='product' className='productImage' src={this.state.displayImage}/>
             <div className="imageSelectors">
-              <img alt='product' src={this.state.image}/>
-              <img alt='product' src={this.state.backImage}/>
+              <img alt='product' onClick={this.handleImage1} src={this.state.image}/>
+              <img alt='product' onClick={this.handleImage2} src={this.state.backImage}/>
             </div>
             <h5>${this.state.price}</h5>
             {/* if the size is one size fits all only display that option */}

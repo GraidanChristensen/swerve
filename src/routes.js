@@ -10,6 +10,7 @@ import Orders from './components/Orders/Orders';
 import Team from './components/Team/Team';
 import Edit from './components/Edit/Edit';
 import Checkout from './components/Checkout/Checkout';
+import Payment from './components/Payment/Payment';
 export default(
     <Switch>
         <Route exact path='/' component={Home}/>
@@ -22,5 +23,6 @@ export default(
         <Route path='/team' component={Team}/>
         <Route path='/edit/:productid' component={Edit}/>
         <Route path='/checkout' component={Checkout}/>
+        <Route path='/payment'  component={Payment}/>
     </Switch>
 )

@@ -5,12 +5,6 @@ import {connect} from 'react-redux';
 import {getCart} from '../../redux/reducer';
 import {Link} from 'react-router-dom';
 
-//tomorrow fix sizes
-//style product button and drop down
-//create check out page
-
-
-
 class Cart extends Component{
   constructor(){
     super();
@@ -22,22 +16,9 @@ class Cart extends Component{
   }
 
   componentDidMount(){
-    this.getCart();
     this.getMyCart();
+    this.getCart();
     this.getTotalPrice();
-  }
-
-  //gets all the products in cart
-  getCart = async () => {
-    try{
-      const cart = await axios.get(`/api/cart/${this.props.cart_id}`);
-      this.setState({
-        cart: cart.data
-      })
-    }
-    catch(err){
-      console.log(err);
-    }
   }
 
   //gets cart_id off sesion and sets it to redux state
@@ -46,10 +27,24 @@ class Cart extends Component{
     try{
       const id = await axios.get('/api/getmycart');
       this.props.getCart(id.data.cart_id);
-      console.log(id.data.cart_id);
-
     }
     catch (err) {
+      console.log(err);
+    }
+  }
+
+
+  //gets all the products in cart
+  getCart = async () => {
+    try{
+      console.log("hit");
+      const cart = await axios.get(`/api/cart/${this.props.cart_id}`);
+      this.setState({
+        cart: cart.data
+      })
+      this.getTotalPrice();
+    }
+    catch(err){
       console.log(err);
     }
   }
@@ -67,7 +62,19 @@ class Cart extends Component{
     }
   }
 
+  //removes item from cart
+  deleteItem = async (cartref) => {
+    try{
+      await axios.delete(`/api/deleteitem/${cartref}`);
+      this.getCart();
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
+
   render(){
+    // maps over each product in the cart
     const mappedCart = this.state.cart.map((product, index) => {
       return (
         <div key={index} className="cartItem">
@@ -76,7 +83,7 @@ class Cart extends Component{
             <h3>{product.title}</h3>
             <p>size: {product.size}</p>
             <h5>{product.price}</h5>
-            <button>Remove</button>
+            <button onClick={() => {this.deleteItem(product.cart_ref_id)}}>Remove</button>
           </div>
         </div>
       )
@@ -90,7 +97,7 @@ class Cart extends Component{
             <h3>Subtotal:</h3>
             <h3>{this.state.total} USD</h3>
           </div>
-          <Link to="/checkout"><button className="checkoutButton">CHECKOUT</button></Link> 
+          {(this.state.cart[0]) ? <Link to="/checkout"><button className="checkoutButton">CHECKOUT</button></Link> : null}
           <Link to="/shop"><button className="continueShopping">CONTINUE SHOPPING</button></Link>
       </div>
     )

@@ -5,6 +5,7 @@ import hamburger from '../../media/hamburger.png';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {clearAdmin} from '../../redux/reducer';
+
 import axios from 'axios';
 
 //This component constantly displays on top of screen.
@@ -55,10 +56,14 @@ class Header extends Component{
 
   getQuantity = async () => {
     try{
-      const quantity = await axios.get(`/api/getquantity/${this.props.cart_id}`);
-      this.setState({
-        cartQuantity: quantity.data
-      })
+      if(this.props.cart_id){
+        const quantity = await axios.get(`/api/getquantity/${this.props.cart_id}`);
+        if(quantity){
+          this.setState({
+            cartQuantity: quantity.data
+          })
+        }
+      }
     }
     catch(err){
       console.log(err);
