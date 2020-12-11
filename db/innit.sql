@@ -19,3 +19,5 @@
 
 -- ALTER TABLE customers
 -- ADD cart_id INT REFERENCES cart(cart_id);
+
+-- CREATE TABLE orders(order_id SERIAL PRIMARY KEY, cart_id INT REFERENCES cart(cart_id), customer_id INT REFERENCES customers(customer_id), fulfilled BOOLEAN);

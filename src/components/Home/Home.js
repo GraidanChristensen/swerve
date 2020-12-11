@@ -15,12 +15,14 @@ class Home extends Component{
   //gets cart_id off sesion and sets it to redux state
   // if there is no session it creates one
   getMyCart = async () => {
-    try{
-      const id = await axios.get('/api/getmycart');
-      this.props.getCart(id.data.cart_id);
-    }
-    catch (err) {
-      console.log(err);
+    if(!this.props.id){
+      try{
+        const id = await axios.get('/api/getmycart');
+        this.props.getCart(id.data.cart_id);
+      }
+      catch (err) {
+        console.log(err);
+      }
     }
   }
 
@@ -35,7 +37,8 @@ class Home extends Component{
 
 function mapStateToProps(state){
   return{
-    cart_id: state.cart_id
+    cart_id: state.cart_id,
+    id: state.id
   }
 }
 

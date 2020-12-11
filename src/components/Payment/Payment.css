@@ -1,0 +1,47 @@
+.Payment{
+    height: 100vh;
+}
+
+.pricing{
+    background-color: #f7f7f7;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.pricing h3{
+    border-bottom: 1px solid black;
+    margin-right: 15px;
+    padding-bottom: 5px;
+}
+
+.Payment h1{
+    margin-left: 15px;
+}
+
+.cardInput{
+    background-color: #f7f7f7;
+    padding: 15px;
+}
+
+.paymentToCart{
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid black;
+    margin: 15px;
+}
+
+.confirmOrder{
+    color: white;
+    background-color: #303030;
+    border: none;
+    border-radius: 5px;   
+    width: 90%;
+    height: 50px;
+    margin-left: 5%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}

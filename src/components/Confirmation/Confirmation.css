@@ -1,0 +1,25 @@
+.Confirmation{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.Confirmation p{
+    text-align: center;
+}
+
+.Confirmation button{
+    color: white;
+    background-color: #303030;
+    border: none;
+    border-radius: 5px;   
+    width: 200px;
+    height: 50px;
+    margin-top: 25px;
+}
+
+.Confirmation img{
+    width: 50px;
+    margin-top: 25px;
+}

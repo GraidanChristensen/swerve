@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './Orders.css';
+//get all the orders
+// map over them to display them
+// more details page
 class Orders extends Component{
   constructor(){
     super();

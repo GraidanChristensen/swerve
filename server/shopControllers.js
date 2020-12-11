@@ -1,3 +1,5 @@
+const nodemailer = require('nodemailer');
+
 module.exports = {
     getProducts: async (req, res) => {
         const db = req.app.get('db');
@@ -107,6 +109,52 @@ module.exports = {
         const customer = await db.add_customer([email, firstName, lastName, address, apartment, city, country, state, postalCode, phone, cartid]);
         await db.set_cart_customer_id([customer[0].customer_id,cartid])
         return res.status(200).send(customer);
+    },
+
+    emailer: async (req, res) => {
+        const {email} = req.body; 
+        let transporter = nodemailer.createTransport({
+            host: "smtp.ethereal.email",
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+              user: "sallie36@ethereal.email", // generated ethereal user
+              pass: "fRbAMVMX7kqJqE3WGW", // generated ethereal password
+            },
+          });
+        
+          const msg = {
+            from: '"Swerve Skiing" <swerve.noreply@example.com>', // sender address
+            to: `${email}`, // list of receivers
+            subject: "Order Confirmation", // Subject line
+            text: "Thank you for your order, we will ship it out soon. Swerve.", // plain text body
+          }
+          // send mail with defined transport object
+          let info = await transporter.sendMail(msg);
+        
+          console.log("Message sent: %s", info.messageId);
+          // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+          console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+        res.status(200).send("Email sent");
+    },
+
+    payment: async (req, res) => {
+        
+    },
+
+    getCustomer: async (req, res) => {
+        const db = req.app.get('db');
+        const {cart_id} = req.params;
+
+        const customer = await db.get_customer([cart_id]);
+        return res.status(200).send(customer);
+        
+    },
+
+    clearCart: async (req, res) => {
+        req.session.destroy();
+        res.sendStatus(200);
     }
     
 }

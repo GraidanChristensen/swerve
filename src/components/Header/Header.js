@@ -55,18 +55,19 @@ class Header extends Component{
   }
 
   getQuantity = async () => {
-    try{
-      if(this.props.cart_id){
-        const quantity = await axios.get(`/api/getquantity/${this.props.cart_id}`);
-        if(quantity){
-          this.setState({
-            cartQuantity: quantity.data
-          })
-        }
+    if(this.props.cart_id){
+      try{
+          const quantity = await axios.get(`/api/getquantity/${this.props.cart_id}`);
+          if(quantity){
+            this.setState({
+              cartQuantity: quantity.data
+            })
+          }
+
       }
-    }
-    catch(err){
-      console.log(err);
+      catch(err){
+        console.log(err);
+      }
     }
   }
 

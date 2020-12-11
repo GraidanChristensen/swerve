@@ -52,6 +52,44 @@ module.exports = {
         console.log(onesizeInput);
         const editedProduct = await db.edit_product([id, titleInput, descriptionInput, imageInput, back_imageInput, priceInput, smallInput, mediumInput, largeInput, xlargeInput, xxlargeInput, onesizeInput])
         return res.status(200).send(editedProduct);
+    },
+
+    addOrder: async (req, res) => {
+        const db = req.app.get('db');
+        const {cart_id, customer_id} = req.body;
+
+        const order = await db.add_order([cart_id, customer_id]);
+        return res.status(200).send(order);
+    },
+
+    fixInventory: async (req, res) => {
+        const db = req.app.get('db');
+        const {cart_id} = req.params;
+        // get all items in cart
+        const items = await db.get_cart_items([cart_id]);
+
+        // for each product obj in array check for size and product and subtract one from corresponding quantity
+        for(let i = 0; i < items.length; i++) {
+            if(items[i].size === 'small'){
+                await db.fix_small_inventory([items[i].product_id, (+items[i].amount_small - 1)]);
+            }
+            if(items[i].size === 'medium'){
+                await db.fix_medium_inventory([items[i].product_id, (+items[i].amount_medium - 1)]);
+            }
+            if(items[i].size === 'large'){
+                await db.fix_large_inventory([items[i].product_id, (+items[i].amount_large - 1)]);
+            }
+            if(items[i].size === 'xlarge'){
+                await db.fix_xlarge_inventory([items[i].product_id, (+items[i].amount_xlarge - 1)]);
+            }
+            if(items[i].size === 'xxlarge'){
+                await db.fix_xxlarge_inventory([items[i].product_id, (+items[i].amount_xxlarge - 1)]);
+            }
+            if(items[i].size === 'onesize'){
+                await db.fix_onesize_inventory([items[i].product_id, (+items[i].amount_onesize - 1)]);
+            }
+        }
+        return res.status(200).send("Success");
     }
 
 }

@@ -39,6 +39,10 @@ app.get('/api/cart/:cart_id', shopController.getCart);
 app.get('/api/carttotal/:cart_id', shopController.getSum);
 app.delete('/api/deleteitem/:cartref', shopController.deleteItem);
 app.post('/api/addcustomer/:cartid', shopController.addCustomer);
+app.post('/api/payment', shopController.payment); //stripe payment
+app.post('/email', shopController.emailer); //nodemailer
+app.get('/getcustomer/:cart_id', shopController.getCustomer);
+app.post('/clearcart', shopController.clearCart); //clear cart after order
 
 
 //adminENDPOINTS
@@ -47,6 +51,8 @@ app.post('/admin/logout', adminController.logout);
 app.post('/admin/addPost', adminController.addPost);
 app.delete('/admin/deleteProduct/:id', adminController.deleteProduct);
 app.put('/admin/editProduct/:id', adminController.editProduct);
+app.post('/api/addorder', adminController.addOrder);
+app.put('/admin/fixinventory/:cart_id', adminController.fixInventory);
 
 
 app.listen(SERVER_PORT, ()=>console.log(`Listening on ${SERVER_PORT}`));
