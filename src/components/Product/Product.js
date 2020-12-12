@@ -146,36 +146,37 @@ class Product extends Component{
             </div>
             <Link to='/cart' className="productButton">Go to cart</Link>
           </div>
-
-          <div className = "productContent">
+          <div className="largeImage">
             <Link className="productButton" to='/shop'><h5>Back</h5></Link>
-            <h1>{this.state.title}</h1>
+            <h1 className="productTitle">{this.state.title}</h1>
             <img alt='product' className='productImage' src={this.state.displayImage}/>
-            <div className="imageSelectors">
-              <img alt='product' onClick={this.handleImage1} src={this.state.image}/>
-              <img alt='product' onClick={this.handleImage2} src={this.state.backImage}/>
-            </div>
-            <h5>${this.state.price}</h5>
-            {/* if the size is one size fits all only display that option */}
-            {this.state.onesize ?
-              <select onClick={e => this.handleSize(e)} name="sizes" id="sizes">
-                <option value="size">Select Size</option>
-                <option value="onesize"> {this.state.onesize ? "One Size" : "(Sold Out)"}</option>
-              </select>
-            : 
-              <select onClick={e => this.handleSize(e)} name="sizes" id="sizes">
-                <option value="size">Select Size</option>
-                <option value="small">{this.state.small ? "Small" : "Small (Sold Out)"}</option>
-                <option value="medium">{this.state.medium ? "Medium" : "Medium (Sold Out)"}</option>
-                <option value="large">{this.state.medium ? "Large" : "Large (Sold Out)"}</option>
-                <option value="xlarge">{this.state.medium ? "X Large" : "X Large (Sold Out)"}</option>
-                <option value="xxlarge">{this.state.medium ? "XX Large" : "XX Large (Sold Out)"}</option>
-              </select>
-             }
-             
-            {!this.state.soldOutToggle ? <button disabled={this.state.selectedSize === "size"} className="addToCart" onClick={this.addToCart}>Add to Cart</button> : null}
-            {this.state.soldOutToggle ? <button className="addToCart">Sold Out</button> : null}
-            <h5>{this.state.description}</h5>
+          </div>
+            <div className = "productContent">
+              <div className="imageSelectors">
+                <img alt='product' onClick={this.handleImage1} src={this.state.image}/>
+                <img alt='product' onClick={this.handleImage2} src={this.state.backImage}/>
+              </div>
+              <h5>${this.state.price}</h5>
+              {/* if the size is one size fits all only display that option */}
+              {this.state.onesize ?
+                <select onClick={e => this.handleSize(e)} name="sizes" id="sizes">
+                  <option value="size">Select Size</option>
+                  <option value="onesize"> {this.state.onesize ? "One Size" : "(Sold Out)"}</option>
+                </select>
+              : 
+                <select onClick={e => this.handleSize(e)} name="sizes" id="sizes">
+                  <option value="size">Select Size</option>
+                  <option value="small">{this.state.small ? "Small" : "Small (Sold Out)"}</option>
+                  <option value="medium">{this.state.medium ? "Medium" : "Medium (Sold Out)"}</option>
+                  <option value="large">{this.state.medium ? "Large" : "Large (Sold Out)"}</option>
+                  <option value="xlarge">{this.state.medium ? "X Large" : "X Large (Sold Out)"}</option>
+                  <option value="xxlarge">{this.state.medium ? "XX Large" : "XX Large (Sold Out)"}</option>
+                </select>
+              } 
+              
+              {!this.state.soldOutToggle ? <button disabled={this.state.selectedSize === "size"} className="addToCart" onClick={this.addToCart}>Add to Cart</button> : null}
+              {this.state.soldOutToggle ? <button className="addToCart">Sold Out</button> : null}
+              <h5>{this.state.description}</h5>
           </div>
       </div>
     )
