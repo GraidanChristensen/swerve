@@ -1,10 +1,10 @@
 require('dotenv').config();
+const {SESSION_SECRET, SERVER_PORT, CONNECTION_STRING, SECRET_KEY} = process.env;
 
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
-
-const {SESSION_SECRET, SERVER_PORT, CONNECTION_STRING} = process.env;
+const stripe = require('stripe')(SECRET_KEY)
 const adminController = require('./adminControllers');
 const shopController = require('./shopControllers');
 
@@ -39,10 +39,30 @@ app.get('/api/cart/:cart_id', shopController.getCart);
 app.get('/api/carttotal/:cart_id', shopController.getSum);
 app.delete('/api/deleteitem/:cartref', shopController.deleteItem);
 app.post('/api/addcustomer/:cartid', shopController.addCustomer);
-app.post('/api/payment', shopController.payment); //stripe payment
 app.post('/email', shopController.emailer); //nodemailer
 app.get('/getcustomer/:cart_id', shopController.getCustomer);
 app.post('/clearcart', shopController.clearCart); //clear cart after order
+//stripe payment
+app.post('/api/payment', (req, res) => {
+    const {price, token, id} = req.body;
+    console.log("PRICE", price);
+    const idempontencyKey = id;
+
+    return stripe.customers.create({
+        email: token.email,
+        source: token.id
+    }).then(cusomter =>{
+        stripe.charges.create({
+            amount: price,
+            currency: 'usd',
+            customer: cusomter.id
+        }, {idempontencyKey})
+    })
+    .then(result => res.status(200).send("Transaction Complete"))
+    .catch(err => console.log(err))
+
+}); 
+
 
 
 //adminENDPOINTS

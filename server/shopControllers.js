@@ -139,10 +139,6 @@ module.exports = {
         res.status(200).send("Email sent");
     },
 
-    payment: async (req, res) => {
-        
-    },
-
     getCustomer: async (req, res) => {
         const db = req.app.get('db');
         const {cart_id} = req.params;

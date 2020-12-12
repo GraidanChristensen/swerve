@@ -69,4 +69,48 @@
     margin-right: 15px;
 }
 
+.filler{
+    display: none;
+}
 
+.menuListItem{
+    display: none;
+}
+
+@media only screen and (min-width: 798px){
+   .showMenu{
+       display: none;
+   }
+
+   .hamburger{
+       display: none;
+   }
+
+   .hamburgerButton{
+       display: none;
+   }
+
+   .header{
+       display: flex;
+       flex-direction: column;
+   }
+
+   .menuList{
+       width: 100%;
+       display: flex;
+       justify-content: space-between;
+       margin-top: 20px;
+   }
+   
+   .filler{
+       display: inline;
+   }
+
+   .menuListItem{
+       display: inline;
+       text-decoration: none;
+       color: black;
+       margin-right: 35px;
+       margin-left: 35px;
+   }
+}

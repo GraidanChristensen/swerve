@@ -8,7 +8,7 @@ class Footer extends Component{
     return(
       <div className='Footer'>
         <Link to='/admin'><img className="lock" alt='lock' src={lock}/></Link>
-        <p>contact information goes here </p>
+        <p>swerve.skis@gmail.com </p>
         <a rel="noreferrer" target="_blank" href="https://www.instagram.com/swerve.skiing/"><img className="socials" alt="instagram" src={instagram}/></a>
         </div>
     )

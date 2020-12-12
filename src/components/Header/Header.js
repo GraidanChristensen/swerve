@@ -77,9 +77,32 @@ class Header extends Component{
         <header className='header'>
             <button onClick={this.toggleMenu} className='hamburgerButton'><img src={hamburger} alt='hamburger menu' className='hamburger'/></button>
             <Link to='/'><img className='headerLogo' alt='logo' src={SWERVEWORD}/></Link>
-            <div className="cartHeader">
-              <Link onClick={this.state.toggleMenu === true ? this.toggleMenu : null} className='cartButton'to='/cart'>Cart</Link>
-              {this.state.cartQuantity ? <Link className='cartButton' to='/cart'>({this.state.cartQuantity})</Link> : null}
+            <div className="menuList">
+              <p className="filler"> </p>
+
+
+              <nav>
+              <Link onClick={this.toggleMenu} className="menuListItem" to='/'>Home</Link>
+              <Link onClick={this.toggleMenu} className="menuListItem" to='/shop'>Shop</Link>
+              <Link onClick={this.toggleMenu} className="menuListItem" to='/team'>Team</Link>
+              {this.props.id ?
+                <Link onClick={this.toggleMenu} className="menuListItem" to='/products'>Products</Link>
+                : null
+              }
+              {this.props.id ?
+                <Link onClick={this.toggleMenu} className="menuListItem" to='/orders'>Orders</Link>
+                : null
+              }
+              {this.props.id ?
+                  <Link onClick={this.logout} className="menuListItem" to="/">Logout</Link>
+                  : null
+              }
+              </nav>
+
+              <div className="cartHeader">
+                <Link onClick={this.state.toggleMenu === true ? this.toggleMenu : null} className='cartButton'to='/cart'>Cart</Link>
+                {this.state.cartQuantity ? <Link className='cartButton' to='/cart'>({this.state.cartQuantity})</Link> : null}
+              </div>
             </div>
         </header>
         <nav className={`menu ${this.state.toggleMenu ? "showMenu" : ""}`}>

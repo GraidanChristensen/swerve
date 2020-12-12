@@ -6,7 +6,6 @@ import darkgram from '../../media/darkgram.png';
 
 //to do 
 // create orders admin page
-// get stripe working
 // amazon for images
 // responsive styling
 // hosting and domain
@@ -16,7 +15,7 @@ class Confirmation extends Component{
     return(
       <div className='Confirmation'>
         <h1>Thank you</h1>
-        <p>We heavily appreciate the love and support. We will send a confirmation email and
+        <p>We appreciate the love and support. We will send a confirmation email and
              your swerve goods will be shipped out as soon as possible. Enjoy!
         </p>
         <h3>Order Id: {this.props.match.params.orderid}</h3>

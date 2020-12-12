@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getCart} from '../../redux/reducer';
-import homeimage from '../../media/homeimage.JPG';
+import homeimage from '../../media/homeimage.jpg';
+import fisheye from '../../media/fisheye.JPG';
+import porter from '../../media/porter.jpg';
+import colt from '../../media/colt.jpg'
 import axios from 'axios';
 import './Home.css';
 
@@ -29,7 +32,22 @@ class Home extends Component{
   render(){
     return(
       <div className='Home'>
-        <h1>Home</h1>
+        <img className="homeImage" alt="home" src={homeimage}/>
+        <h3>2020 Winter Collection</h3>
+        <div className="homegrid">
+          <div className="gridItem">
+            <img  alt="home" src={fisheye}/>
+          </div>
+          <div className="gridItem">
+            <p>Portobello and Coletyn in the alien tee</p>
+          </div>
+          <div className="gridItem">
+            <img alt="porter in alien tee" src={porter}/>
+          </div>
+          <div className="gridItem">
+            <img alt="colt in alien tee" src={colt}/>
+          </div>
+        </div>
       </div>
     )
   }

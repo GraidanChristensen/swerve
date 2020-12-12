@@ -3,10 +3,9 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {clearCart} from '../../redux/reducer';
+import StripeCheckout from 'react-stripe-checkout';
 
 import './Payment.css';
-
-import {CardElement} from '@stripe/react-stripe-js';
 
 //this class gets the total price and customer from checkout page on mount
 // handle payment method is called on place order button click
@@ -19,7 +18,8 @@ class Payment extends Component{
       subTotal: 0,
       total: 0,
       email: "",
-      customer_id: ""
+      customer_id: "",
+      toggleButton: true
     }
   }
 
@@ -27,6 +27,9 @@ class Payment extends Component{
   componentDidMount(){
     this.getTotalPrice();
     this.getCustomer();
+    this.setState({
+      toggleButton: true
+    })
   }
  
   //get customers email and customer_id and set it to state
@@ -57,13 +60,33 @@ class Payment extends Component{
     }
   }
 
+  // axios call to stripe endpoint to handle payment
+  makePayment = token => {
+    const body = {
+      token,
+      price: (this.state.total * 100),
+      id: this.state.customer_id
+    }
+    axios.post('/api/payment', body)
+    .then(res => {
+      const {status} = res;
+      console.log(status);
+      this.handleConfirmation();
+    })
+    .catch (err => console.log(err))
+  }
+
+
   // makes a request to email to send confirmation email 
   // adds an order to db passing cart_id and customer_id
   //subtracts from stock of product
   // clears cart
   //sends to the confirmation page passing the order id with
-  handlePayment = async () =>{
+  handleConfirmation = async () =>{
     try{
+      this.setState({
+        toggleButton: false
+      })
       await axios.post('/email', {email: this.state.email}) // nodemailer
       const order = await axios.post('/api/addorder', {cart_id: this.props.cart_id, customer_id: this.state.customer_id}); //creates order
       await axios.put(`/admin/fixinventory/${this.props.cart_id}`) //subtracts products from inventory
@@ -87,8 +110,9 @@ class Payment extends Component{
           <h3>Shipping: flat rate $6.00 USD</h3>
           <h3>Total: ${this.state.total} USD</h3>
         </div>
-          <CardElement className="cardInput"/>
-          <button onClick={this.handlePayment} className="confirmOrder">Confirm Order</button>
+          <StripeCheckout stripeKey={'pk_test_51HwxW7Klb5Fyw3QKLdAdUKTjPCwDLUK2JrrpO5FMeXw3oCWv6dBaUg1TewhFGFCzp4o2IkZBeDNDDz6Aospt3R0l00DgbiyqcS'} token={this.makePayment} amount={this.state.total * 100} name="Swerve">
+            <button className={this.state.toggleButton ? "confirmOrder" : "hideConfirm"}>Purchase</button>
+          </StripeCheckout>
       </div>
     )
   }
