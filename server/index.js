@@ -10,6 +10,10 @@ const shopController = require('./shopControllers');
 
 const app = express();
 
+const path = require('path')
+
+
+app.use(express.static(`${__dirname}/../build`))
 app.use(express.json());
 
 app.use(session({
@@ -68,11 +72,16 @@ app.post('/api/payment', (req, res) => {
 //adminENDPOINTS
 app.post('/admin/login', adminController.login);
 app.post('/admin/logout', adminController.logout);
-app.post('/admin/addPost', adminController.addPost);
+app.post('/admin/addPost', adminController.addProduct);
 app.delete('/admin/deleteProduct/:id', adminController.deleteProduct);
 app.put('/admin/editProduct/:id', adminController.editProduct);
 app.post('/api/addorder', adminController.addOrder);
 app.put('/admin/fixinventory/:cart_id', adminController.fixInventory);
 
+
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'))
+})
 
 app.listen(SERVER_PORT, ()=>console.log(`Listening on ${SERVER_PORT}`));

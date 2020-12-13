@@ -27,7 +27,7 @@ module.exports = {
         res.sendStatus(200);
     },
 
-    addPost: async (req, res) => {
+    addProduct: async (req, res) => {
         const db = req.app.get('db');
         const {title, description, image, back_image, price, small, medium, large, xlarge, xxlarge, oneSize} = req.body;
         const newProduct = await db.add_product([title, description, image, back_image, price, small, medium, large, xlarge, xxlarge, oneSize]);

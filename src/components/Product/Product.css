@@ -4,6 +4,12 @@
     align-items: center;
 }
 
+.backButton{
+    color: black;
+    text-decoration: none;
+    margin-left: 25px;
+}
+
 .productImage{
     width: 95%;
 }
@@ -121,6 +127,10 @@ select{
 }
 
 .productTitle{
+    text-align: center;
+}
+
+.description{
     text-align: center;
 }
 

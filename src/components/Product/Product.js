@@ -147,7 +147,7 @@ class Product extends Component{
             <Link to='/cart' className="productButton">Go to cart</Link>
           </div>
           <div className="largeImage">
-            <Link className="productButton" to='/shop'><h5>Back</h5></Link>
+            <Link className="backButton" to='/shop'><h5>Back</h5></Link>
             <h1 className="productTitle">{this.state.title}</h1>
             <img alt='product' className='productImage' src={this.state.displayImage}/>
           </div>
@@ -176,7 +176,7 @@ class Product extends Component{
               
               {!this.state.soldOutToggle ? <button disabled={this.state.selectedSize === "size"} className="addToCart" onClick={this.addToCart}>Add to Cart</button> : null}
               {this.state.soldOutToggle ? <button className="addToCart">Sold Out</button> : null}
-              <h5>{this.state.description}</h5>
+              <h5 className="description">{this.state.description}</h5>
           </div>
       </div>
     )

@@ -6,8 +6,6 @@ import darkgram from '../../media/darkgram.png';
 
 //to do 
 // create orders admin page
-// amazon for images
-// responsive styling
 // hosting and domain
 
 class Confirmation extends Component{
