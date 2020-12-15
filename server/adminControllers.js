@@ -90,6 +90,13 @@ module.exports = {
             }
         }
         return res.status(200).send("Success");
+    },
+
+    getOrders: async (req, res) => {
+        const db =  req.app.get('db');
+        
+        const orders = await db.get_orders();
+        return res.status(200).send(orders);
     }
 
 }

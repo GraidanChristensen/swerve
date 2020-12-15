@@ -3,11 +3,6 @@ import {Link} from 'react-router-dom';
 import './Confirmation.css';
 import darkgram from '../../media/darkgram.png';
 
-
-//to do 
-// create orders admin page
-// hosting and domain
-
 class Confirmation extends Component{
   render(){
     return(

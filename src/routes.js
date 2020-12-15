@@ -12,6 +12,7 @@ import Edit from './components/Edit/Edit';
 import Checkout from './components/Checkout/Checkout';
 import Payment from './components/Payment/Payment';
 import Confirmation from './components/Confirmation/Confirmation';
+import Details from './components/Order Details/Details';
 export default(
     <Switch>
         <Route exact path='/' component={Home}/>
@@ -26,5 +27,6 @@ export default(
         <Route path='/checkout' component={Checkout}/>
         <Route path='/payment'  component={Payment}/>
         <Route path='/confirmation/:orderid' component={Confirmation}/>
+        <Route path='/details/:order_id' component={Details}/>
     </Switch>
 )

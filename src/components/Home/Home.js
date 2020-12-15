@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getCart} from '../../redux/reducer';
-import homeimage from '../../media/homeimage.jpg';
 import fisheye from '../../media/fisheye.JPG';
 import porter from '../../media/porter.jpg';
 import colt from '../../media/colt.jpg'
@@ -32,7 +31,7 @@ class Home extends Component{
   render(){
     return(
       <div className='Home'>
-        <img className="homeImage" alt="home" src={homeimage}/>
+        <img className="homeImage" alt="home" src="https://swerveski.s3-us-west-1.amazonaws.com/homeimage.jpg"/>
         <h3>2020 Winter Collection</h3>
         <div className="homegrid">
           <div className="gridItem">

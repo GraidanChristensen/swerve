@@ -77,7 +77,7 @@ app.delete('/admin/deleteProduct/:id', adminController.deleteProduct);
 app.put('/admin/editProduct/:id', adminController.editProduct);
 app.post('/api/addorder', adminController.addOrder);
 app.put('/admin/fixinventory/:cart_id', adminController.fixInventory);
-
+app.get('/orders', adminController.getOrders);
 
 
 app.get('*', (req, res) => {

@@ -168,9 +168,9 @@ class Product extends Component{
                   <option value="size">Select Size</option>
                   <option value="small">{this.state.small ? "Small" : "Small (Sold Out)"}</option>
                   <option value="medium">{this.state.medium ? "Medium" : "Medium (Sold Out)"}</option>
-                  <option value="large">{this.state.medium ? "Large" : "Large (Sold Out)"}</option>
-                  <option value="xlarge">{this.state.medium ? "X Large" : "X Large (Sold Out)"}</option>
-                  <option value="xxlarge">{this.state.medium ? "XX Large" : "XX Large (Sold Out)"}</option>
+                  <option value="large">{this.state.large ? "Large" : "Large (Sold Out)"}</option>
+                  <option value="xlarge">{this.state.xlarge ? "X Large" : "X Large (Sold Out)"}</option>
+                  <option value="xxlarge">{this.state.xxlarge ? "XX Large" : "XX Large (Sold Out)"}</option>
                 </select>
               } 
               
