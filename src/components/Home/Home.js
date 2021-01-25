@@ -38,9 +38,6 @@ class Home extends Component{
             <img  alt="home" src={fisheye}/>
           </div>
           <div className="gridItem">
-            <p>Portobello and Coletyn in the alien tee</p>
-          </div>
-          <div className="gridItem">
             <img alt="porter in alien tee" src={porter}/>
           </div>
           <div className="gridItem">
