@@ -30,9 +30,9 @@
     object-fit: cover;
 } 
 
-@media only screen and (min-width: 798px){
+/* @media only screen and (min-width: 798px){
     .homeImage{
         max-width: 1100px;
         margin-top: 50px;
     }
-}
+} */
